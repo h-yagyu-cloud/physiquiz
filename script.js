@@ -710,6 +710,11 @@ function startQuiz(questions, difficulty) {
         // ... (Explanation rendering remains same)
         explanationText.textContent = explanation;
         feedbackArea.classList.remove('hidden');
+
+        // Auto-scroll to Next Button
+        setTimeout(() => {
+            nextBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
         if (window.renderMathInElement) {
             try {
                 renderMathInElement(explanationText, {
