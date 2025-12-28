@@ -298,7 +298,28 @@ label {
     font-family: var(--font-main);
     cursor: pointer;
     transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.diff-char {
+    font-size: 1.4rem;
     font-weight: bold;
+}
+
+.diff-desc {
+    font-size: 0.8rem;
+    color: #555;
+    white-space: nowrap;
+    /* Prevent mid-word breaks */
+}
+
+/* Ensure selected state updates text color too */
+.diff-btn.selected .diff-desc {
+    color: white;
 }
 
 .diff-btn:hover {
