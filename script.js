@@ -296,6 +296,11 @@ function setupIndexPage() {
         stepChapter.style.opacity = '1'; // Ensure opacity is set (CSS transition uses opacity)
         chapterContainer.style.display = 'grid'; // Ensure grid
 
+        // Auto-scroll to Middle Field (Chapter)
+        setTimeout(() => {
+            stepChapter.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+
         stepDifficulty.classList.add('hidden');
         startBtn.classList.add('hidden');
         selectedCategory = null;
