@@ -159,10 +159,11 @@ function updateLevelDisplay() {
 
     const rankEl = document.getElementById('rank-display');
     if (rankEl) {
-        rankEl.textContent = `総合レベル: ${totalLvl} 【${title}】`;
+        rankEl.innerHTML = `総合レベル: ${totalLvl}<br>【${title}】`;
         rankEl.style.background = '#e3f2fd'; // Light blue
         rankEl.style.color = '#0d47a1';
         rankEl.style.fontWeight = 'bold';
+        rankEl.style.textAlign = 'center'; // Ensure center alignment
     }
 }
 
@@ -323,6 +324,11 @@ function setupIndexPage() {
         selectedCategory = chapId;
         stepDifficulty.classList.remove('hidden');
         stepDifficulty.style.opacity = '1';
+
+        // Auto-scroll to Bottom Field (Difficulty)
+        setTimeout(() => {
+            stepDifficulty.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
 
         // Reset difficulty selection visual
         document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('selected'));
