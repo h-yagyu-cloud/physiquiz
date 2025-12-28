@@ -294,7 +294,7 @@ label {
     border: none;
     border-radius: 12px;
     background: #f0f0f0;
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     font-family: var(--font-main);
     cursor: pointer;
     transition: all 0.2s;
