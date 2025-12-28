@@ -93,6 +93,12 @@ h1 {
     font-weight: normal;
 }
 
+.q-counter-small {
+    font-size: 1.5rem;
+    /* Reduced from parent h1's 2.5rem */
+    color: #eee;
+}
+
 .card {
     background: var(--card-bg);
     border-radius: 20px;
@@ -494,31 +500,49 @@ label {
     color: #333;
 }
 
-.result-stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 30px;
+/* Result New Layout */
+.result-Summary-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
-.stat-card {
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 15px;
-    text-align: center;
+.score-circle-outer.small-circle {
+    width: 100px;
+    height: 100px;
+}
+
+.score-circle-inner.small-inner {
+    width: 85px;
+    height: 85px;
+}
+
+.result-stats-col {
     display: flex;
     flex-direction: column;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    gap: 10px;
+    text-align: left;
+}
+
+.stat-row {
+    background: #f8f9fa;
+    padding: 8px 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    min-width: 120px;
 }
 
 .stat-label {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: #888;
-    margin-bottom: 5px;
 }
 
 .stat-value {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
     color: #333;
 }
