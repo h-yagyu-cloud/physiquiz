@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>物理クイズ　～階段を上るようにいっぽいっぽ～</title>
+    <title>物理クイズ</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -38,9 +38,18 @@
                 <div class="selection-step hidden" id="step-difficulty">
                     <label>③ 難易度を選ぶ</label>
                     <div class="difficulty-buttons horizontal">
-                        <button class="diff-btn" data-diff="A" onclick="selectDifficulty('A')">A: 基礎・語彙</button>
-                        <button class="diff-btn" data-diff="B" onclick="selectDifficulty('B')">B: 計算</button>
-                        <button class="diff-btn" data-diff="C" onclick="selectDifficulty('C')">C: 思考力</button>
+                        <button class="diff-btn" data-diff="A" onclick="selectDifficulty('A')">
+                            <span class="diff-char">A</span>
+                            <span class="diff-desc">基礎・語彙</span>
+                        </button>
+                        <button class="diff-btn" data-diff="B" onclick="selectDifficulty('B')">
+                            <span class="diff-char">B</span>
+                            <span class="diff-desc">計算問題</span>
+                        </button>
+                        <button class="diff-btn" data-diff="C" onclick="selectDifficulty('C')">
+                            <span class="diff-char">C</span>
+                            <span class="diff-desc">思考力</span>
+                        </button>
                     </div>
                 </div>
 
