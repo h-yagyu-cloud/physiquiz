@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物理クイズ　～階段を上るようにいっぽいっぽ～</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container fade-in">
+        <header>
+            <h1 class="bounce">物理クイズ<br><span class="subtitle">～階段を上るようにいっぽいっぽ～</span></h1>
+        </header>
+
+        <main>
+            <div class="card">
+                <div id="rank-display" class="rank-badge">読込中...</div>
+                <div id="bonus-timer-area" class="bonus-timer-area hidden"></div>
+                <h2>学習する分野を選んでください</h2>
+
+                <div class="selection-step" id="step-part">
+                    <label>① 大分野（編）を選ぶ</label>
+                    <div id="part-container" class="button-grid">
+                        <!-- Parts generated here -->
+                    </div>
+                </div>
+
+                <div class="selection-step hidden" id="step-chapter">
+                    <label>② 中分野（章）を選ぶ</label>
+                    <div id="chapter-container" class="button-grid">
+                        <!-- Chapters generated here -->
+                    </div>
+                </div>
+
+                <div class="selection-step hidden" id="step-difficulty">
+                    <label>③ 難易度を選ぶ</label>
+                    <div class="difficulty-buttons horizontal">
+                        <button class="diff-btn" data-diff="A" onclick="selectDifficulty('A')">A: 基礎・語彙</button>
+                        <button class="diff-btn" data-diff="B" onclick="selectDifficulty('B')">B: 計算</button>
+                        <button class="diff-btn" data-diff="C" onclick="selectDifficulty('C')">C: 思考力</button>
+                    </div>
+                </div>
+
+                <button id="start-btn" class="primary-btn hidden" disabled>クイズを始める</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 Physics Quiz App</p>
+            <button id="reset-btn" class="text-btn">学習データをリセット</button>
+        </footer>
+    </div>
+    <script src="categories.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Inline script for landing page specific interactions if needed, 
+        // but main logic will be in script.js.
+        // Actually, let's keep it simple here and handle index logic in script.js or a separate index.js.
+        // For simplicity, I'll put initialization code in script.js but handle page detection.
+    </script>
+</body>
+
+</html>
