@@ -1,0 +1,206 @@
+/* Editor Specific Styles */
+.editor-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.editor-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+@media (max-width: 800px) {
+    .editor-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.input-panel {
+    position: sticky;
+    top: 20px;
+}
+
+.styled-input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+    /* Important for padding */
+}
+
+textarea {
+    resize: vertical;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.option-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.option-row input[type="radio"] {
+    transform: scale(1.5);
+}
+
+.section-title {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.preview-content {
+    background: #fff;
+    border: 1px dashed #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    min-height: 100px;
+}
+
+#preview-opts {
+    margin-top: 10px;
+    display: grid;
+    gap: 5px;
+}
+
+.preview-opt {
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+.preview-opt.correct {
+    background: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.preview-explanation {
+    margin-top: 15px;
+    padding: 10px;
+    background: #e7f3fe;
+    border-left: 4px solid #0056b3;
+    font-size: 0.9rem;
+    color: #333;
+    white-space: pre-wrap;
+}
+
+/* List Styles */
+.questions-list {
+    margin-top: 15px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.list-item {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    font-size: 0.9rem;
+}
+
+.list-item-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.list-item-body {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #666;
+}
+
+.list-item-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.sm-btn {
+    padding: 2px 8px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+}
+
+.sm-btn:hover {
+    background: #eee;
+}
+
+.delete-btn {
+    color: red;
+    border-color: #ffcccc;
+}
+
+.delete-btn:hover {
+    background: #ffe6e6;
+}
+
+/* Secondary Buttons */
+.list-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.secondary-btn {
+    padding: 8px 15px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.secondary-btn:hover {
+    background: #5a6268;
+}
+
+.danger-btn {
+    padding: 8px 15px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: auto;
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    z-index: 1000;
+    transition: opacity 0.3s;
+}
+
+.toast.hidden {
+    opacity: 0;
+    pointer-events: none;
+}

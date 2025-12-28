@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物理クイズ - 問題作成エディタ</title>
+    <link rel="stylesheet" href="style.css"> <!-- Base styles -->
+    <link rel="stylesheet" href="editor.css"> <!-- Editor specific styles -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+</head>
+
+<body>
+    <div class="editor-container">
+        <header>
+            <h1>問題作成エディタ</h1>
+            <p><a href="index.html">← アプリに戻る</a></p>
+        </header>
+
+        <div class="editor-layout">
+            <!-- Left: Input Form -->
+            <div class="input-panel card">
+                <h2>新規作成</h2>
+
+                <div class="form-group">
+                    <label>分野・章</label>
+                    <div class="row">
+                        <select id="part-select" class="styled-select"></select>
+                        <select id="chapter-select" class="styled-select"></select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>難易度</label>
+                    <select id="difficulty-select" class="styled-select" style="width: 100px;">
+                        <option value="A">A (基礎)</option>
+                        <option value="B">B (標準)</option>
+                        <option value="C">C (応用)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>問題文 (LaTeX対応: $$...$$)</label>
+                    <textarea id="question-text" rows="4" placeholder="例: 速さ $v$ は..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>画像URL (任意)</label>
+                    <input type="text" id="image-url" placeholder="https://..." class="styled-input">
+                </div>
+
+                <div class="form-group">
+                    <label>形式・分類</label>
+                    <div class="row" style="gap: 20px; align-items:flex-end;">
+                        <div>
+                            <label style="display:block; font-size:0.8rem; margin-bottom:5px;">形式</label>
+                            <label><input type="radio" name="q-type" value="4ch" checked> 4択問題</label>
+                            <label><input type="radio" name="q-type" value="ox"> 〇×問題</label>
+                        </div>
+                        <div>
+                            <label style="display:block; font-size:0.8rem; margin-bottom:5px;">分類番号 (重複除外用)</label>
+                            <input type="number" id="classification" class="styled-input" style="width:100px;"
+                                placeholder="例: 1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>選択肢 (正解にチェック)</label>
+                    <div class="option-row" id="row-0">
+                        <input type="radio" name="correct-ans" value="0" checked>
+                        <input type="text" id="opt-0" placeholder="選択肢1" class="styled-input">
+                    </div>
+                    <div class="option-row" id="row-1">
+                        <input type="radio" name="correct-ans" value="1">
+                        <input type="text" id="opt-1" placeholder="選択肢2" class="styled-input">
+                    </div>
+                    <div class="option-row" id="row-2">
+                        <input type="radio" name="correct-ans" value="2">
+                        <input type="text" id="opt-2" placeholder="選択肢3" class="styled-input">
+                    </div>
+                    <div class="option-row" id="row-3">
+                        <input type="radio" name="correct-ans" value="3">
+                        <input type="text" id="opt-3" placeholder="選択肢4" class="styled-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>解説</label>
+                    <textarea id="explanation-text" rows="3" placeholder="解説を入力..."></textarea>
+                </div>
+
+                <button id="add-btn" class="primary-btn">リストに追加</button>
+            </div>
+
+            <!-- Right: Preview & List -->
+            <div class="preview-panel">
+                <!-- Live Preview -->
+                <div class="card preview-box">
+                    <h3>プレビュー</h3>
+                    <div id="preview-area" class="preview-content">
+                        <!-- Rendered content goes here -->
+                        <div id="preview-q"></div>
+                        <div id="preview-img" class="hidden"><img src="" style="max-height:150px;"></div>
+                        <div id="preview-opts"></div>
+                        <div id="preview-explanation" class="preview-explanation hidden"></div>
+                    </div>
+                </div>
+
+                <!-- List -->
+                <div class="card list-box">
+                    <h3>作成リスト (<span id="list-count">0</span>件)</h3>
+                    <div class="list-actions">
+                        <button id="copy-btn" class="secondary-btn">クリップボードにコピー (Sheets用)</button>
+                        <button id="json-btn" class="secondary-btn">JSON出力 (Console)</button>
+                        <button id="clear-btn" class="danger-btn">全削除</button>
+                    </div>
+                    <div id="questions-list" class="questions-list">
+                        <!-- Added questions go here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div id="toast" class="toast hidden">コピーしました！</div>
+
+    <script src="categories.js"></script>
+    <script src="editor.js"></script>
+</body>
+
+</html>

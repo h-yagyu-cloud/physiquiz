@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物理クイズ - 出題中</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>問題 <span id="q-number">1</span>/5</h1>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+        </header>
+
+        <main>
+            <div id="quiz-container" class="card fade-in">
+                <div id="question-area">
+                    <p id="question-text" class="question-text">問題を読み込んでいます...</p>
+
+                    <!-- Image Area -->
+                    <div id="image-container" class="hidden" style="text-align: center; margin-bottom: 20px;">
+                        <img id="question-image" src="" alt="問題画像"
+                            style="max-width: 100%; max-height: 300px; border-radius: 8px;">
+                    </div>
+                    <div id="options-container" class="options-grid">
+                        <!-- Options will be injected here -->
+                    </div>
+                </div>
+
+                <div id="feedback-area" class="feedback-area hidden">
+                    <p id="feedback-msg"></p>
+                    <p id="explanation-text" style="font-size: 0.9rem; font-weight: normal; margin-top:10px;"></p>
+                    <button id="next-btn" class="primary-btn" style="margin-top: 15px;">次へ</button>
+                </div>
+            </div>
+
+            <div id="result-container" class="card hidden fade-in">
+                <div class="result-header">結果発表</div>
+
+                <!-- Score Section -->
+                <div class="score-section-container">
+                    <div class="score-circle-outer">
+                        <div class="score-circle-inner">
+                            <span id="final-score" class="score-val">0</span><span class="score-max">/5</span>
+                        </div>
+                    </div>
+                    <div id="result-comment" class="result-comment">Excellent!</div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="result-stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-label">獲得ポイント</span>
+                        <span id="earned-points" class="stat-value">0 Pt</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">連続高正答率</span>
+                        <span id="streak-display" class="stat-value">0</span>
+                    </div>
+                </div>
+
+                <!-- Level Progress Section -->
+                <div id="level-result-section" class="level-result-section hidden">
+                    <div class="level-header-row">
+                        <span id="part-name-result">分野名</span>
+                        <span id="level-tag-result" class="level-badge">Lv.0</span>
+                    </div>
+                    <div class="xp-bar-container">
+                        <div class="xp-bar-fill" id="xp-bar-fill"></div>
+                    </div>
+                    <div class="xp-text">あと <span id="next-xp">0</span> Pt でレベルアップ！</div>
+                </div>
+
+                <!-- Special Messages -->
+                <div id="special-messages" class="special-messages"></div>
+
+                <div class="action-buttons">
+                    <button onclick="window.location.href='index.html'" class="primary-btn pulse-btn">トップに戻る</button>
+                    <!-- Potential Retry button? -->
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="categories.js"></script>
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
