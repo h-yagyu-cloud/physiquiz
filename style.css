@@ -506,15 +506,22 @@ label {
 
 /* Result New Layout */
 /* Result New Layout */
+/* Result New Layout */
 .result-Summary-row {
+    display: -webkit-flex;
+    /* Safari specific */
     display: flex;
-    flex-direction: row;
-    /* Explicitly set row */
+    flex-direction: row !important;
+    /* Force row globally */
+    flex-wrap: nowrap !important;
+    /* Prevent wrapping globally */
     justify-content: center;
     align-items: center;
     gap: 15px;
-    /* Reduced gap */
+    /* Reduced gap default */
     margin-bottom: 20px;
+    width: 100%;
+    /* Ensure container has width */
 }
 
 .score-circle-outer.small-circle {
