@@ -501,17 +501,23 @@ label {
 }
 
 /* Result New Layout */
+/* Result New Layout */
 .result-Summary-row {
     display: flex;
+    flex-direction: row;
+    /* Explicitly set row */
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
+    /* Reduced gap */
     margin-bottom: 20px;
 }
 
 .score-circle-outer.small-circle {
     width: 100px;
     height: 100px;
+    /* Allow shrinking if needed */
+    flex-shrink: 0;
 }
 
 .score-circle-inner.small-inner {
@@ -522,8 +528,59 @@ label {
 .result-stats-col {
     display: flex;
     flex-direction: column;
+    gap: 8px;
+    text-align: left;
+    min-width: 0;
+    /* Allow flex shrinkage */
+}
+
+/* Mobile Optimizations */
+@media (max-width: 400px) {
+    .card {
+        padding: 15px;
+        /* Reduce padding on small screens */
+    }
+
+    .score-circle-outer.small-circle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .score-circle-inner.small-inner {
+        width: 68px;
+        height: 68px;
+    }
+
+    .score-val {
+        font-size: 2rem;
+    }
+
+    .stat-row {
+        min-width: auto;
+        padding: 5px 10px;
+    }
+
+    .result-Summary-row {
+        gap: 10px;
+    }
+}
+
+.result-stats-col {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
     text-align: left;
+}
+
+.stat-row {
+    background: #f8f9fa;
+    padding: 8px 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    min-width: 110px;
+    /* Slight reduction */
 }
 
 .stat-row {
