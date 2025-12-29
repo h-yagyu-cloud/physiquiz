@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>物理クイズ - 出題中</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- KaTeX -->
@@ -17,7 +17,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>問題 <span id="q-number">1</span>/5</h1>
+            <h1>問題 <span class="q-counter-small"><span id="q-number">1</span>/5</span></h1>
             <div class="progress-bar">
                 <div class="progress-fill" id="progress"></div>
             </div>
@@ -49,26 +49,30 @@
                 <div class="result-header">結果発表</div>
 
                 <!-- Score Section -->
-                <div class="score-section-container">
-                    <div class="score-circle-outer">
-                        <div class="score-circle-inner">
+                <!-- New Result Layout: Circle (Left) + Stats (Right) -->
+                <div class="result-Summary-row"
+                    style="display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: center; gap: 15px; width: 100%;">
+                    <!-- Left: Circle -->
+                    <div class="score-circle-outer small-circle">
+                        <div class="score-circle-inner small-inner">
                             <span id="final-score" class="score-val">0</span><span class="score-max">/5</span>
                         </div>
                     </div>
-                    <div id="result-comment" class="result-comment">Excellent!</div>
+
+                    <!-- Right: Stats Column -->
+                    <div class="result-stats-col">
+                        <div class="stat-row">
+                            <span class="stat-label">獲得ポイント</span>
+                            <span id="earned-points" class="stat-value">0 Pt</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">連続高正答率</span>
+                            <span id="streak-display" class="stat-value">0</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Stats Grid -->
-                <div class="result-stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-label">獲得ポイント</span>
-                        <span id="earned-points" class="stat-value">0 Pt</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-label">連続高正答率</span>
-                        <span id="streak-display" class="stat-value">0</span>
-                    </div>
-                </div>
+                <div id="result-comment" class="result-comment">Excellent!</div>
 
                 <!-- Level Progress Section -->
                 <div id="level-result-section" class="level-result-section hidden">
