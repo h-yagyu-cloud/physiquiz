@@ -401,47 +401,30 @@ async function setupQuizPage() {
             }
         }
 
-        // 1. Try fetching from GAS if URL is set
+        // 1. Try fetching from local static JSON
         let fetchError = null;
-        if (GAS_API_URL) {
-            try {
-                // If partTitle is found, request that specific sheet. Otherwise default (first sheet).
-                const fetchUrl = partTitle
-                    ? `${GAS_API_URL}?sheet=${encodeURIComponent(partTitle)}`
-                    : GAS_API_URL;
+        // const GAS_API_URL = ...; // No longer used for fetching
+        const fetchUrl = 'questions.json?v=1'; // Add version for simple cache busting
 
-                console.log(`Fetching from: ${fetchUrl}`);
+        console.log(`Fetching from: ${fetchUrl}`);
 
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 sec timeout
+        try {
+            const res = await fetch(fetchUrl);
 
-                let res;
-                try {
-                    res = await fetch(fetchUrl, { signal: controller.signal });
-                    clearTimeout(timeoutId);
-                } catch (fetchErr) {
-                    clearTimeout(timeoutId);
-                    throw fetchErr;
-                }
-
-                if (res.ok) {
-                    const json = await res.json();
-                    if (json.error) {
-                        console.warn('GAS Error:', json.error);
-                        fetchError = `GAS Error: ${json.error}`;
-                    } else if (Array.isArray(json)) {
-                        allQuestions = json;
-                        loadedFrom = `GAS (${partTitle || 'Default'})`;
-                    } else {
-                        fetchError = 'Invalid JSON structure';
-                    }
+            if (res.ok) {
+                const json = await res.json();
+                if (Array.isArray(json)) {
+                    allQuestions = json;
+                    loadedFrom = 'Static JSON';
                 } else {
-                    fetchError = `HTTP ${res.status}`;
+                    fetchError = 'Invalid JSON structure';
                 }
-            } catch (e) {
-                console.error('GAS fetching failed, falling back to local data.', e);
-                fetchError = e.message;
+            } else {
+                fetchError = `HTTP ${res.status}`;
             }
+        } catch (e) {
+            console.error('JSON fetching failed, falling back to local variable.', e);
+            fetchError = e.message;
         }
 
         // 2. Fallback to local variable
