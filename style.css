@@ -563,31 +563,39 @@ label {
 /* Mobile Optimizations - MUST BE LAST TO OVERRIDE */
 @media (max-width: 400px) {
     .card {
-        padding: 15px;
-        /* Reduce padding on small screens */
+        padding: 10px;
+        /* Minimal padding */
     }
 
     .score-circle-outer.small-circle {
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
+        flex-shrink: 0;
     }
 
     .score-circle-inner.small-inner {
-        width: 68px;
-        height: 68px;
+        width: 60px;
+        height: 60px;
     }
 
     .score-val {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .stat-row {
         min-width: auto;
-        padding: 5px 10px;
+        padding: 4px 8px;
     }
 
     .result-Summary-row {
-        gap: 10px;
+        gap: 5px;
+        /* Minimal gap */
+        flex-direction: row !important;
+        /* Force row */
+        flex-wrap: nowrap !important;
+        /* Prevent wrapping */
+        justify-content: space-between;
+        /* Use space-between if tight */
     }
 }
 
