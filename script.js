@@ -437,6 +437,7 @@ async function setupQuizPage() {
 
         console.log(`Questions loaded from: ${loadedFrom}`);
 
+        /*
         // Show Data Source Indicator
         const sourceIndicator = document.createElement('div');
         sourceIndicator.style.fontSize = '0.8rem';
@@ -449,6 +450,7 @@ async function setupQuizPage() {
             sourceIndicator.innerHTML += `<br><span style="color:red; font-size:0.7rem;">(Error: ${fetchError})</span>`;
         }
         document.getElementById('quiz-container').appendChild(sourceIndicator);
+        */
 
         // 3. Data Sanitization & Normalization
         allQuestions = allQuestions.map(q => {
@@ -603,9 +605,8 @@ function startQuiz(questions, difficulty) {
         const progressPercent = ((currentQuestionIndex + 1) / questions.length) * 100;
         progressBar.style.width = `${progressPercent}%`;
 
-        // Prepend ID and Answer for checking (Debug Mode)
-        const idDisplay = `[ID:${q.id || '-'} A:${q.answer}] `;
-        questionText.textContent = idDisplay + q.question;
+        // const idDisplay = `[ID:${q.id || '-'} A:${q.answer}] `; // Debug
+        questionText.textContent = q.question;
 
         // ... (Image handling same) ...
         try {
@@ -625,11 +626,21 @@ function startQuiz(questions, difficulty) {
         optionsContainer.innerHTML = '';
         feedbackArea.classList.add('hidden');
 
-        q.options.forEach((opt, index) => {
+        // Create an array of option objects with original indices
+        let displayOptions = q.options.map((opt, i) => ({ text: opt, originalIndex: i }));
+
+        // Randomize ONLY if it is a 'choice' type (keep OX fixed)
+        // Default to randomized if type is undefined, but usually we check q.type
+        if (q.type === 'choice') {
+            displayOptions = shuffleArray(displayOptions);
+        }
+
+        displayOptions.forEach((optObj) => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
-            btn.textContent = opt;
-            btn.onclick = () => checkAnswer(index, q.answer, q.explanation, q.difficulty, btn);
+            btn.textContent = optObj.text;
+            // Pass the ORIGINAL index to checkAnswer so logic remains consistent
+            btn.onclick = () => checkAnswer(optObj.originalIndex, q.answer, q.explanation, q.difficulty, btn);
             optionsContainer.appendChild(btn);
         });
 
